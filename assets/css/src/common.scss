@@ -1,0 +1,39 @@
+$mobileS: 320px;
+$mobileM: 375px;
+$mobileL: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+$laptopL: 1440px;
+$fourK: 2560px;
+
+
+p {
+    font-size: 17px;
+}
+h1 {
+    font-size: 68px;
+}
+h2 {
+    font-size: 34px;
+}
+h3 {
+    font-size: 19px;
+    font-family: Arial;
+}
+div {
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, p, div, span, {
+    font-family: sans-serif;
+    color: #20303c;
+}
+.wrapper {
+    padding: 0 20px;
+    @include breakpoint($mobileL) {
+
+    }
+}
+.background-parallax-pic {
+    position: absolute;
+}
