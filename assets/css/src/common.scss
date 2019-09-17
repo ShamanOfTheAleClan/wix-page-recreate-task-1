@@ -6,7 +6,9 @@ $laptop: 1024px;
 $laptopL: 1440px;
 $fourK: 2560px;
 
-
+* {
+    transition: 0.35s ease-in-out;
+}
 p {
     font-size: 17px;
 }

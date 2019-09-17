@@ -29,7 +29,7 @@ function jsTask() {
         .pipe(plumber({errorHandler: notify.onError("Klaida: <%= error.message %>")}))
         .pipe(sourcemaps.init())
         .pipe(concat('prod.js'))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(assetsDir + '/js/'))
 }

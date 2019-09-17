@@ -1,25 +1,69 @@
 nav {
-    height: 64px;
+    height: 90px;
     background-color: #2f2e2e;
+    position: relative;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include breakpoint($tablet) {
+        height: 64px;
+        padding: 0;
+        display: block;
+    }
     .wrapper {
-        height: 100%;
-        display: flex;
-        
+        height: max-content;
+        // display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0px;
+        padding: 0;
+        overflow: visible;
         @include breakpoint($tablet) {
             justify-content: center;
+            position: static;
+            padding: 0 20px;
+            height: 100%;
+            width: initial;
         }
     }
     ul {
         display: flex;
         height: 100%;
+        flex-direction: column;
+        height: max-content;
+        width: 100vw;
+        background: #2f2e2e;
+        align-items: center;
+        padding: 20px 0;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;        
         @include breakpoint($tablet) {
             justify-content: space-between;
             max-width: 800px;
             width: 100%;
+            flex-direction: row;
+            height: initial;
+            background: none;
+            align-items: initial;
+            padding: 0;
+        }
+    }
+    li:last-child {
+        order: -1;
+        @include breakpoint($tablet) {
+            order: 2;
         }
     }
     li {
-        height: 100%
+        padding: 20px;
+        @include breakpoint($tablet) {
+            height: 100%
+        }
+        
     }
     a {
         display: flex;
@@ -35,14 +79,72 @@ nav {
         margin-right: 14px;
     }
     .burger {
-        height: fit-content;
-        width: fit-content;
-        position: relative;
+        height: 50px;
+        width: 50px;
+        // position: relative;
+        z-index: 1;
+        padding: 16px 0;
+        // box-sizing: content-box;
+        box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         span {
-            position: absolute;
-            width: 30px;
-            height: 5px;
+            // position: relative;
+            display: block;
+            // right: 0;
+            width: 22px;
+            height: 2px;
             background-color: white;
+            border-radius: 5px;
+
+        }
+        span:nth-of-type(1) {
+            top: 0;
+            transform-origin: right;
+        }
+        span:nth-of-type(2) {
+            top: 9px;
+            transform-origin: right;
+        }
+        span:nth-of-type(3) {
+            top: 16px;
+            transform-origin: right;
+        }
+        
+    }
+    .burger-active {
+        span:nth-of-type(1) {
+            transform-origin: right;
+            transform:rotate(-45deg) translate(-3px, -2px);
+        }
+        span:nth-of-type(2) {
+            transform-origin: right;
+            transform: scaleX(0);
+        }
+        span:nth-of-type(3) {
+            transform-origin: right;
+            transform: rotate(45deg) translate(-2px, 3px);
+        }
+    }
+    .menu-hidden {
+        transform-origin: right;
+        transform: scaleX(0);
+        
+        // opacity: 0;
+        // pointer-events: none;
+        @include breakpoint($tablet) {
+            transform-origin: right;
+            transform: none;
+            // opacity: 1;
+            // pointer-events: all;
+        }
+        ul {
+            transform: scaleX(1);
+        }
+        @include breakpoint($tablet) {
+            
         }
     }
 }
