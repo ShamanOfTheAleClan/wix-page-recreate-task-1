@@ -150,8 +150,9 @@ nav {
     .menu-hidden {
         transform-origin: right;
         transform: translateX(100%);
+        // transform: scaleX(0);
         animation-name: menuFadeOut;
-        animation-duration: 0.3s;
+        animation-duration: 2.3s;
         animation-fill-mode: both;
         animation-timing-function: ease-in-out;
         // transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
@@ -164,6 +165,7 @@ nav {
         
         ul {
             transform: translateX(-100%);
+            // transform: scaleX(1);
             // background-size: 0%;
         }
         @include breakpoint($tablet) {
@@ -173,5 +175,9 @@ nav {
     }
     .currently-visiting {
         color: #C58383;
+    }
+    .overflow-wrap {
+        overflow: hidden;
+        width: 100vw;
     }
 }
