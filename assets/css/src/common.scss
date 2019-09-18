@@ -7,7 +7,11 @@ $laptopL: 1440px;
 $fourK: 2560px;
 
 * {
-    transition: 0.35s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+h1, h2, h3, h4, p, div, span {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    color: #20303c;
 }
 p {
     font-size: 17px;
@@ -26,10 +30,10 @@ div {
     font-size: 14px;
 }
 
-h1, h2, h3, h4, p, div, span, {
-    font-family: sans-serif;
-    color: #20303c;
+body {
+    padding-top: 72px;
 }
+
 .wrapper {
     padding: 0 20px;
     @include breakpoint($mobileL) {

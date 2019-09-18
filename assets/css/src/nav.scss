@@ -12,14 +12,17 @@ nav {
         display: block;
     }
     .wrapper {
-        height: max-content;
-        // display: flex;
+        height: 100vh;
+        transform-origin: right;
+        // background-size: 100vw;
         position: absolute;
+        background: #2f2e2e;
         left: 0;
         right: 0;
         top: 0px;
         padding: 0;
-        overflow: visible;
+        overflow: hidden;
+        // z-index: 2;
         @include breakpoint($tablet) {
             justify-content: center;
             position: static;
@@ -32,14 +35,16 @@ nav {
         display: flex;
         height: 100%;
         flex-direction: column;
-        height: max-content;
+        height: 100vh;
         width: 100vw;
-        background: #2f2e2e;
+        position: absolute;
+        // background: #2f2e2e;
+        // background-size: 100%;
         align-items: center;
         padding: 20px 0;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        // left: 50%;
+        // transform: translateX(-50%);
         position: absolute;        
         @include breakpoint($tablet) {
             justify-content: space-between;
@@ -54,6 +59,7 @@ nav {
     }
     li:last-child {
         order: -1;
+        padding-top: 0;
         @include breakpoint($tablet) {
             order: 2;
         }
@@ -71,6 +77,8 @@ nav {
         height: 100%;
         color: white;
         text-decoration: none;
+        font-weight: 300;
+        font-size: 17px;
     }
     .login-logo {
         background: center/contain no-repeat url('data:image/svg+xml,<svg data-bbox="0 0 50 50" data-type="shape" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#FFF"><path d="M25 48.08a22.97 22.97 0 0 1-15.4-5.92c2.26-5.37 7.5-8.27 15.38-8.27 7.89 0 13.14 3.04 15.4 8.42A22.87 22.87 0 0 1 25 48.08m.28-35.3c4.92 0 8.6 3.8 8.6 8.88 0 5.2-3.87 9.45-8.6 9.45s-8.61-4.24-8.61-9.45c0-5.07 3.68-8.88 8.6-8.88M25 0A25 25 0 0 0 .15 27.7c.03.3.1.59.14.88.08.59.17 1.17.3 1.75.07.34.16.66.25 1 .13.51.27 1.02.44 1.53a24.37 24.37 0 0 0 3.55 6.87 24.97 24.97 0 0 0 1.65 2.02c.22.24.43.49.66.72.4.42.83.8 1.26 1.19.18.15.33.33.51.48v-.02A24.89 24.89 0 0 0 25 50a24.88 24.88 0 0 0 16.07-5.86c.17-.13.33-.3.5-.45.43-.4.87-.79 1.29-1.2l.65-.73c.35-.39.7-.78 1.03-1.19.22-.27.42-.56.63-.84.3-.4.58-.81.85-1.24a26.1 26.1 0 0 0 1.75-3.21c.21-.46.4-.93.58-1.4.13-.35.26-.68.37-1.02.17-.5.3-1.02.44-1.53l.26-1c.12-.57.21-1.16.3-1.75.04-.3.1-.58.13-.87A25 25 0 0 0 25 0"/></svg>');
@@ -128,23 +136,42 @@ nav {
             transform: rotate(45deg) translate(-2px, 3px);
         }
     }
+    @keyframes menuFadeOut {
+        0% {
+          opacity: 1;
+        }
+        30% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
     .menu-hidden {
         transform-origin: right;
-        transform: scaleX(0);
-        
-        // opacity: 0;
-        // pointer-events: none;
+        transform: translateX(100%);
+        animation-name: menuFadeOut;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        animation-timing-function: ease-in-out;
+        // transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+        // transition-delay: 0.25s;
+        // transition: 0.3s ease-in-out;
         @include breakpoint($tablet) {
             transform-origin: right;
             transform: none;
-            // opacity: 1;
-            // pointer-events: all;
         }
+        
         ul {
-            transform: scaleX(1);
+            transform: translateX(-100%);
+            // background-size: 0%;
         }
         @include breakpoint($tablet) {
             
         }
+        
+    }
+    .currently-visiting {
+        color: #C58383;
     }
 }
