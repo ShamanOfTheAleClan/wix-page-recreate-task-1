@@ -1,0 +1,46 @@
+section.services {
+    background: top / cover no-repeat url('https://static.wixstatic.com/media/1e47b2_cd5df08585b64f40a575e620ed3bf997.jpg/v1/fill/w_320,h_1059,al_c,q_80,usm_0.66_1.00_0.01/1e47b2_cd5df08585b64f40a575e620ed3bf997.webp');
+    h2, h3, p {
+        color: white;
+        font-weight: lighter;
+        
+    }
+    h2 {
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+    h3 {
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+    p {
+        margin-bottom: 7px;
+    }
+    .wrapper, .items-wrap, .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+    }  
+    .wrapper {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    } 
+    .hor-line {
+        border-top: 3px solid white;
+        width: 35px;
+        margin-bottom: 30px;
+    }
+    .item {
+        margin-bottom: 40px;
+    }
+    .item-logo {
+        margin-bottom: 20px;
+        svg {
+            height: 125px;
+            width: 125px;
+            fill: white;
+        }
+    }
+}

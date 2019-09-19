@@ -4,12 +4,22 @@ nav {
     position: relative;
     padding: 0 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     @include breakpoint($tablet) {
         height: 64px;
         padding: 0;
         display: block;
+    }
+    .menu-wrap {
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 2;
     }
     .wrapper {
         height: 100vh;
@@ -57,11 +67,19 @@ nav {
             padding: 0;
         }
     }
-    li:last-child {
+    li:nth-last-child(2) {
         order: -1;
         padding-top: 0;
         @include breakpoint($tablet) {
             order: 2;
+        }
+    }
+    li:first-child {
+        a {
+            color: #C58383;
+            @include breakpoint($tablet) {
+                color: white;
+            }
         }
     }
     li {
@@ -69,7 +87,6 @@ nav {
         @include breakpoint($tablet) {
             height: 100%
         }
-        
     }
     a {
         display: flex;
@@ -86,11 +103,12 @@ nav {
         width: 26px;
         margin-right: 14px;
     }
+
     .burger {
         height: 50px;
         width: 50px;
         // position: relative;
-        z-index: 1;
+        z-index: 2;
         padding: 16px 0;
         // box-sizing: content-box;
         box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.6);
@@ -179,8 +197,10 @@ nav {
     .currently-visiting {
         color: #C58383;
     }
-    // .overflow-wrap {
-    //     overflow: hidden;
-    //     width: ;
-    // }
+    .social-icons {
+        & > div {
+            width: 28px;
+            height: 28px;
+        }
+    }
 }
