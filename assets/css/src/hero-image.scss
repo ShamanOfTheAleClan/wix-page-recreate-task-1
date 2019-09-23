@@ -13,13 +13,14 @@ section.hero-image {
     video {
         height: 800px;
         
-        top: 90px;
+        top: 72px;
         bottom: 0;
         width: auto;
         position: fixed;
         left: 50%;
         transform: translateX(-50%);
         z-index: -2;
+        
     }
     .hero-logo {
         display: flex;
@@ -76,4 +77,5 @@ section.hero-image {
             
         }
     }
+    
 }

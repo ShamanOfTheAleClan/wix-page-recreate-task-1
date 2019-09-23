@@ -47,9 +47,14 @@ div {
 body {
     padding-top: 72px;
     // overflow: hidden;
+    
 }
-
-
+section:not(:first-of-type), footer {
+    background: #2f2e2e;
+}
+section {
+    transition: 0.85s ease-in-out;
+}
 
 // ##################################################################
 
@@ -88,3 +93,9 @@ body {
 }
 
 // ##################################################################
+
+.hor-line {
+    border-top: 3px solid white;
+    width: 35px;
+    margin-bottom: 30px;
+}
