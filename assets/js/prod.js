@@ -3,6 +3,7 @@ function unhide(e) {
 }
 
 
+
 let burger = document.querySelector('.burger');
 let menu = document.querySelector('nav').querySelector('.wrapper');
 
@@ -33,4 +34,27 @@ function showSection(){
 window.addEventListener('scroll', showSection);
 window.addEventListener('load', showSection);
 
+
+
+let hearts = document.querySelectorAll('.heart');
+
+hearts.forEach((e)=>{
+
+    
+    e.addEventListener('click', (f)=>{
+        e.querySelector('.count');
+        e.querySelector('.count').dataset.count;
+        e.querySelector('.count').dataset.count++;
+        e.querySelector('.count').innerHTML = e.querySelector('.count').dataset.count;
+        if (e.querySelector('.count').dataset.count == 20) {
+            alert('Please stop');
+        }
+        if (e.querySelector('.count').dataset.count == 40) {
+            alert('No, really, stop');
+        }
+        if (e.querySelector('.count').dataset.count == 100) {
+            alert('You REALLY don\'t have anything better to do');
+        }
+    })
+})
 //# sourceMappingURL=prod.js.map
