@@ -24,7 +24,7 @@ $fourK: 2560px;
     transition: 0.3s ease-in-out;
 }
 
-h1, h2, h3, h4, p, div, span {
+h1, h2, h3, h4, p, div, span, input, textarea {
     font-family: 'Fira Sans Condensed', sans-serif;
     color: #20303c;
 }
@@ -48,6 +48,7 @@ div {
 body {
     padding-top: 72px;
     // overflow: hidden;
+    position: relative;
     
 }
 section:not(:first-of-type), footer {
@@ -64,6 +65,16 @@ section {
     @include breakpoint($mobileL) {
 
     }
+}
+
+.wrapper-small {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: 100;
+    padding: 40px 20px;
 }
 
 // ##################################################################
@@ -99,4 +110,50 @@ section {
     border-top: 3px solid white;
     width: 35px;
     margin-bottom: 30px;
+}
+
+// ##################################################################
+
+section.empty {
+    height: 230px;
+    background: top/cover no-repeat url('https://static.wixstatic.com/media/9b6c7d_54033d6d82c24d8e9be8212d3a8febe6.jpg/v1/fill/w_640,h_862,al_c,q_85,usm_0.66_1.00_0.01/9b6c7d_54033d6d82c24d8e9be8212d3a8febe6.webp');
+}
+
+// ##################################################################
+
+footer {
+    background: #2f2e2e;
+    padding: 40px 20px;
+    
+    p {
+        color: white;
+        font-size: 15px;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .social-icons {
+        display: none;
+    }
+}
+
+// ##################################################################
+
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #b03737;
+    position: fixed;
+    bottom: 15%;
+    right: 20px;
+    &::after {
+        width: 20px;
+        height: 20px;
+        border-left: 1px solid white;
+        border-top: 1px solid white;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }
