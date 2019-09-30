@@ -91,32 +91,35 @@ window.addEventListener('load', showButtonToTop);
 window.addEventListener('scroll', showButtonToTop);
 
 
-
-
-document.querySelectorAll('.display-switch').forEach((e)=>{
-    e.addEventListener('click', function(){
-        let pc = document.querySelector('.pc');
-        let mobile = document.querySelector('.mobile');
-        let body = document.querySelector('body');
-        if (pc.classList.contains('selected-display-type')) {
-            pc.classList.remove('selected-display-type');
-            body.classList.remove('pc-mode');
-            mobile.classList.add('selected-display-type');
-            body.classList.add('mobile-mode');
-            showButtonToTop();
-            // enter mobile mode
-        }
-        else if (mobile.classList.contains('selected-display-type')) {
-            mobile.classList.remove('selected-display-type');
-            body.classList.remove('mobile-mode');
-            pc.classList.add('selected-display-type');
-            body.classList.add('pc-mode');
-            showButtonToTop();
-            // enter pc mode
-        }
+let pc = document.querySelector('.pc');
+let mobile = document.querySelector('.mobile');
+let body = document.querySelector('body');
+document.querySelector('.display-switch.mobile').addEventListener('click', function(){        
+    
+    if (pc.classList.contains('selected-display-type')) {
+        pc.classList.remove('selected-display-type');
+        body.classList.remove('pc-mode');
+        mobile.classList.add('selected-display-type');
+        body.classList.add('mobile-mode');
+        showButtonToTop();
+        // enter mobile mode
+    }
+});
+    document.querySelector('.display-switch.pc').addEventListener('click', function(){
+    if (mobile.classList.contains('selected-display-type')) {
+        mobile.classList.remove('selected-display-type');
+        body.classList.remove('mobile-mode');
+        pc.classList.add('selected-display-type');
+        body.classList.add('pc-mode');
+        showButtonToTop();
+        // enter pc mode
+    }
     })
-})
 
+
+
+// CHAT functionality
+// chat open
 let chatCloseButton = document.querySelector('.chat-close');
 chatCloseButton.addEventListener('click', (e)=>{
     document.querySelector('body').classList.remove('chat-open');
@@ -125,6 +128,7 @@ document.querySelector('.chat-icon').addEventListener('click', (e)=>{
     document.querySelector('body').classList.add('chat-open');
 })
 
+// chat activate on chat input focus
 document.querySelector('.chat-input').addEventListener('click', function(e) {
     if (document.querySelector('.chat-wrap').classList.contains('chat-active')) {}
     else {
@@ -132,44 +136,107 @@ document.querySelector('.chat-input').addEventListener('click', function(e) {
         h3.style.opacity="0";
         h3.style.display='none';
         document.querySelector('.chat-hero').querySelector('p').style.opacity="0";
-        
         document.querySelector('.chat-wrap').classList.add('chat-active');
-        
-        
         setTimeout(function(){
             h3.style.opacity='1';
             h3.style.display='block';
+            h3.style.fontSize ='18px';
+            h3.style.marginBottom='0px';
         },200);
     }
-    
-})
+});
+
+// chat deactivate on chat hero image click
 document.querySelector('.chat-hero').addEventListener('click', function(e){
     if (e.target != document.activeElement) {
-        document.querySelector('.chat-hero').querySelector('h3').style.opacity='0';
-        document.querySelector('.chat-hero').querySelector('h3').style.display='none';
+        let h3 = document.querySelector('.chat-hero').querySelector('h3');
+        h3.style.opacity='0';
+        h3.style.display='none';
         document.querySelector('.chat-wrap').classList.remove('chat-active');
         setTimeout(function(){
-            document.querySelector('.chat-hero').querySelector('h3').style.opacity='1';
-            document.querySelector('.chat-hero').querySelector('h3').style.display="block";
+            h3.style.opacity='1';
+            h3.style.display="block";
+            h3.style.marginBottom="15px";
+            h3.style.fontSize="23px";
             document.querySelector('.chat-hero').querySelector('p').style.opacity="1";
         },200);
-        
-
     }
-    
 })
 
-document.querySelector('.enter').addEventListener('click', function(){
-    let message = document.querySelector('.chat-input').value;
-        if (message != '') {
-            
-            let chatBubble = document.createElement('div');
-            chatBubble.innerText = message;
-            document.querySelector('.chat-input').value = '';
-            chatBubble.classList.add('chat-me');
-            document.querySelector('.chat-field').appendChild(chatBubble);
-        }
-})
+let firstResponse = document.createElement('div');
+// create that form from first bot response.
+
+function sendMessage(){
+    let message = document.querySelector('.chat-input');
+    let chat = document.querySelector('.chat-field');
+    
+    if (message.value != '') {
+        let chatBubble = document.createElement('div');
+        chatBubble.innerText = message.value;
+        message.value= '';
+        chatBubble.classList.add('chat-me');
+        chat.appendChild(chatBubble);
+    }
+    if ((chat.querySelector('.chat-me')!=null) &&(document.querySelector('.chat-date') == null)) {
+        let date = document.createElement('div');
+        let options = { hour: 'numeric', minute: 'numeric'  };
+        let today  = new Date();
+        date.innerText = today.toLocaleTimeString("en-US", options).toUpperCase();
+        date.classList.add('chat-date');
+        chat.insertBefore(date, chat.firstChild);
+    }
+    chat.lastElementChild.scrollIntoView();
+    if (chat.childElementCount == 2) {
+        let typing = document.createElement('div');
+        let loadingFx1 = document.createElement('span');
+        let loadingFx2 = document.createElement('span');
+        let loadingFx3 = document.createElement('span');
+        setTimeout(function(){
+            typing.appendChild(loadingFx1);
+            typing.appendChild(loadingFx2);
+            typing.appendChild(loadingFx3);
+            typing.classList.add('typing');
+            chat.appendChild(typing);
+            setTimeout(function(){
+                typing.style.display="none";
+                let chatBubble2 = document.createElement('div');
+                chatBubble2.innerText = "Hey there, please leave your details so we can contact you even if you are no longer on the site.";
+                chatBubble2.classList.add('chat-you');
+                chat.appendChild(chatBubble2);
+
+                let chatBubble3 = document.createElement('div');
+                chatBubble3.appendChild = firstResponse;
+                chatBubble3.classList.add('chat-you');
+                chat.appendChild(chatBubble3);
+            },4000);
+        },500);
+    }
+    else {
+        let typing = document.createElement('div');
+        let loadingFx1 = document.createElement('span');
+        let loadingFx2 = document.createElement('span');
+        let loadingFx3 = document.createElement('span');
+        setTimeout(function(){
+            typing.appendChild(loadingFx1);
+            typing.appendChild(loadingFx2);
+            typing.appendChild(loadingFx3);
+            typing.classList.add('typing');
+            chat.appendChild(typing);
+            setTimeout(function(){
+                typing.style.display="none";
+                let chatBubble2 = document.createElement('div');
+                chatBubble2.innerHTML = "That's very interesting, but I don't have time for that ;)";
+                chatBubble2.classList.add('chat-you');
+                chat.appendChild(chatBubble2);
+            },4000);
+        },500);
+    }
+}
+
+// create chat bubbles
+document.querySelector('.enter').addEventListener('click', sendMessage);
+
+// chat clip/enter button transform on input
 document.querySelector('.chat-input').addEventListener('keypress', function(e){
     if (document.querySelector('.chat-input').value != "") {
         document.querySelector('.clip').classList.add('transparent');
@@ -178,19 +245,13 @@ document.querySelector('.chat-input').addEventListener('keypress', function(e){
     else {
         document.querySelector('.clip').classList.remove('transparent');
         document.querySelector('.enter').classList.add('transparent');
-    }
+    };
+    // send message on enter
     if(e.code == "Enter") {
-        let message = e.target.value;
-        if (message != '') {
-            
-            let chatBubble = document.createElement('div');
-            chatBubble.innerText = message;
-            e.target.value = '';
-            chatBubble.classList.add('chat-me');
-            document.querySelector('.chat-field').appendChild(chatBubble);
-        }
+        sendMessage();
     }
-})
+});
+
 document.querySelector('body').addEventListener('click', function() {
     if (document.querySelector('.chat-input').value != "") {
         document.querySelector('.clip').classList.add('transparent');
@@ -200,4 +261,7 @@ document.querySelector('body').addEventListener('click', function() {
         document.querySelector('.clip').classList.remove('transparent');
         document.querySelector('.enter').classList.add('transparent');
     }
-})
+});
+
+
+
