@@ -1,6 +1,22 @@
 section.contact {
     background: center/cover no-repeat url('https://static.wixstatic.com/media/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.jpg/v1/fill/w_517,h_1080,al_c,q_85/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.webp');
     padding: 40px 20px;
+    .wrapper-small {
+        @include breakpoint($tablet) {
+            width: 600px;
+            margin: 0 auto;
+            padding: 50px 100px;
+        }
+    }
+    .wrappie {
+        @include breakpoint($tablet) {
+            display: flex;
+            justify-content: space-between;
+            &>* {
+                width: 30%;
+            }
+        }
+    }
     .car-pic {
         background: center/contain no-repeat url('https://static.wixstatic.com/media/9b6c7d_8352a6ee5a454a98a5278f9628ccc4ca.png/v1/fill/w_382,h_310,al_c,q_80,usm_0.66_1.00_0.01/9b6c7d_8352a6ee5a454a98a5278f9628ccc4ca.webp');
         height: 155px;
@@ -15,7 +31,7 @@ section.contact {
     .hor-line {
         border-color: #2F2e2e;
     }
-    p {
+    p { 
         margin-bottom: 20px;
         text-align: left;
     }

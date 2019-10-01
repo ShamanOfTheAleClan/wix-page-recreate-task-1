@@ -1,5 +1,5 @@
 section.services {
-    background: top / cover no-repeat url('https://static.wixstatic.com/media/1e47b2_cd5df08585b64f40a575e620ed3bf997.jpg/v1/fill/w_320,h_1059,al_c,q_80,usm_0.66_1.00_0.01/1e47b2_cd5df08585b64f40a575e620ed3bf997.webp');
+    background: top / cover no-repeat url('https://static.wixstatic.com/media/1e47b2_cd5df08585b64f40a575e620ed3bf997.jpg/v1/fill/w_1775,h_1078,al_c,q_85,usm_0.66_1.00_0.01/1e47b2_cd5df08585b64f40a575e620ed3bf997.webp');
     h2, h3, p {
         color: white;
         font-weight: lighter;
@@ -23,13 +23,32 @@ section.services {
         text-align: center;
         
     }  
+    .items-wrap{
+        @include breakpoint($tablet) {
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 700px;
+        }
+    }
     .wrapper {
         padding-top: 50px;
         padding-bottom: 50px;
+        @include breakpoint($tablet) {
+            padding-top: 100px;
+        }
     } 
-    
+    .hor-line {
+        @include breakpoint($tablet) {
+            margin-bottom: 60px;
+        }
+    }
     .item {
         margin-bottom: 40px;
+        @include breakpoint($tablet) {
+            width: 100%;
+            max-width: 180px;
+        }
     }
     .item-logo {
         margin-bottom: 20px;

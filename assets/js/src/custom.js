@@ -1,3 +1,5 @@
+
+
 function unhide(e) {
     e.classList.remove('hidden');
 }
@@ -8,11 +10,26 @@ function opaqueNot(e) {
     e.classList.add('transparent');
 }
 
+let doc = {
+    get: function(e){
+      return document.querySelector(e);
+    },
+    getAll: function(e){
+      return document.querySelectorAll(e);
+    },
+    id: function(e){
+      return document.getElementById(e);
+    },
+    create: function(e){
+        return document.createElement(e);
+    }
+};
 
-let burger = document.querySelector('.burger');
-let menu = document.querySelector('nav').querySelector('.wrapper');
 
-burger.addEventListener('click', e => {
+let burger = doc.get('.burger');
+let menu = doc.get('nav').querySelector('.wrapper');
+
+burger.addEventListener('click', function(e) {
     if (burger.classList.contains('burger-active')){
         burger.classList.remove('burger-active');
         menu.classList.add('menu-hidden');
@@ -22,62 +39,63 @@ burger.addEventListener('click', e => {
         menu.classList.remove('menu-hidden');
     }
 });
-window.addEventListener('scroll', ()=>{
-    if (scrollY > 600) {
-        document.querySelector('video').style.display="none";
+window.addEventListener('scroll', function(){
+    if (pageYOffset > 600) {
+        doc.get('video').style.display="none";
     }
     else {
-        document.querySelector('video').style.display="block";
+        doc.get('video').style.display="block";
     }
 })
 
 // lazy-load
-let sections = document.querySelectorAll('section');
+let sections = doc.getAll('section');
 function showSection(){
-    sections.forEach((f)=>{
-        
-        let dist = f.offsetTop - window.innerHeight;
+    for(i=0;i<sections.length;i++) {
+        sections[i]
+        let dist = sections[i].offsetTop - window.innerHeight;
         let view = pageYOffset;
         if (view >= dist+50) {
-            unhide(f);
+            unhide(sections[i]);
         }
-    })
+    }
 }
 window.addEventListener('scroll', showSection);
 window.addEventListener('load', showSection);
 
 
 
-let hearts = document.querySelectorAll('.heart');
+let hearts = doc.getAll('.heart');
 
-hearts.forEach((e)=>{
+
+for(i=0; i<hearts.length;i++) {
 
     
-    e.addEventListener('click', (f)=>{
-        e.querySelector('.count');
-        e.querySelector('.count').dataset.count;
-        e.querySelector('.count').dataset.count++;
-        e.querySelector('.count').innerHTML = e.querySelector('.count').dataset.count;
-        if (e.querySelector('.count').dataset.count == 20) {
+    hearts[i].addEventListener('click', function(f){
+        hearts[i].querySelector('.count');
+        hearts[i].querySelector('.count').dataset.count;
+        hearts[i].querySelector('.count').dataset.count++;
+        hearts[i].querySelector('.count').innerHTML = hearts[i].querySelector('.count').dataset.count;
+        if (hearts[i].querySelector('.count').dataset.count == 20) {
             alert('Please stop');
         }
-        if (e.querySelector('.count').dataset.count == 40) {
+        if (hearts[i].querySelector('.count').dataset.count == 40) {
             alert('No, really, stop');
         }
-        if (e.querySelector('.count').dataset.count == 100) {
-            alert('You REALLY don\'t have anything better to do');
+        if (hearts[i].querySelector('.count').dataset.count == 100) {
+            alert('You REALLY don\'t have anything better to do??');
         }
     })
-});
+};
 
-document.querySelector('.back-to-top').addEventListener('click', (e)=>{
+doc.get('.back-to-top').addEventListener('click', function(e){
     window.scrollTo(0,0);
 });
 
 
 function showButtonToTop(){
-    let button = document.querySelector('.back-to-top');
-    if (document.querySelector('.mobile').classList.contains('selected-display-type') && scrollY >= 200) {
+    let button = doc.get('.back-to-top');
+    if (doc.get('.mobile').classList.contains('selected-display-type') && pageYOffset >= 200) {
         opaque(button);
         console.log('opaque');
     }
@@ -91,10 +109,10 @@ window.addEventListener('load', showButtonToTop);
 window.addEventListener('scroll', showButtonToTop);
 
 
-let pc = document.querySelector('.pc');
-let mobile = document.querySelector('.mobile');
-let body = document.querySelector('body');
-document.querySelector('.display-switch.mobile').addEventListener('click', function(){        
+let pc = doc.get('.pc');
+let mobile = doc.get('.mobile');
+let body = doc.get('body');
+doc.get('.display-switch.mobile').addEventListener('click', function(){        
     
     if (pc.classList.contains('selected-display-type')) {
         pc.classList.remove('selected-display-type');
@@ -105,7 +123,7 @@ document.querySelector('.display-switch.mobile').addEventListener('click', funct
         // enter mobile mode
     }
 });
-    document.querySelector('.display-switch.pc').addEventListener('click', function(){
+    doc.get('.display-switch.pc').addEventListener('click', function(){
     if (mobile.classList.contains('selected-display-type')) {
         mobile.classList.remove('selected-display-type');
         body.classList.remove('mobile-mode');
@@ -120,23 +138,23 @@ document.querySelector('.display-switch.mobile').addEventListener('click', funct
 
 // CHAT functionality
 // chat open
-let chatCloseButton = document.querySelector('.chat-close');
-chatCloseButton.addEventListener('click', (e)=>{
-    document.querySelector('body').classList.remove('chat-open');
+let chatCloseButton = doc.get('.chat-close');
+chatCloseButton.addEventListener('click', function(e){
+    doc.get('body').classList.remove('chat-open');
 })
-document.querySelector('.chat-icon').addEventListener('click', (e)=>{
-    document.querySelector('body').classList.add('chat-open');
+doc.get('.chat-icon').addEventListener('click', function(e){
+    doc.get('body').classList.add('chat-open');
 })
 
 // chat activate on chat input focus
-document.querySelector('.chat-input').addEventListener('click', function(e) {
-    if (document.querySelector('.chat-wrap').classList.contains('chat-active')) {}
+doc.get('.chat-input').addEventListener('click', function(e) {
+    if (doc.get('.chat-wrap').classList.contains('chat-active')) {}
     else {
-        let h3 = document.querySelector('.chat-hero').querySelector('h3');
+        let h3 = doc.get('.chat-hero').querySelector('h3');
         h3.style.opacity="0";
         h3.style.display='none';
-        document.querySelector('.chat-hero').querySelector('p').style.opacity="0";
-        document.querySelector('.chat-wrap').classList.add('chat-active');
+        doc.get('.chat-hero').querySelector('p').style.opacity="0";
+        doc.get('.chat-wrap').classList.add('chat-active');
         setTimeout(function(){
             h3.style.opacity='1';
             h3.style.display='block';
@@ -147,121 +165,187 @@ document.querySelector('.chat-input').addEventListener('click', function(e) {
 });
 
 // chat deactivate on chat hero image click
-document.querySelector('.chat-hero').addEventListener('click', function(e){
+doc.get('.chat-hero').addEventListener('click', function(e){
     if (e.target != document.activeElement) {
-        let h3 = document.querySelector('.chat-hero').querySelector('h3');
+        let h3 = doc.get('.chat-hero').querySelector('h3');
         h3.style.opacity='0';
         h3.style.display='none';
-        document.querySelector('.chat-wrap').classList.remove('chat-active');
+        doc.get('.chat-wrap').classList.remove('chat-active');
         setTimeout(function(){
             h3.style.opacity='1';
             h3.style.display="block";
             h3.style.marginBottom="15px";
             h3.style.fontSize="23px";
-            document.querySelector('.chat-hero').querySelector('p').style.opacity="1";
+            doc.get('.chat-hero').querySelector('p').style.opacity="1";
         },200);
     }
 })
 
-let firstResponse = document.createElement('div');
+let firstResponse = doc.create('div');
 // create that form from first bot response.
+let fieldset = doc.create('fieldset');
+let input1 = doc.create('input');
+let input2 = doc.create('input');
+let submit = doc.create('input');
+let placeholder1 = doc.create('div');
+let placeholder2 = doc.create('div');
 
+placeholder1.classList.add('label');
+placeholder2.classList.add('label');
+
+firstResponse.appendChild(fieldset);
+fieldset.appendChild(input1);
+fieldset.appendChild(placeholder1);
+fieldset.appendChild(input2);
+fieldset.appendChild(placeholder2);
+fieldset.appendChild(submit);
+
+placeholder1.innerText='Name';
+placeholder2.innerText='Email';
+
+
+input1.setAttribute('type','text');
+input1.setAttribute('required','true')
+input2.setAttribute('type','email');
+input2.setAttribute('required','true');
+submit.setAttribute('type','submit');
+
+
+// send typed text as message
 function sendMessage(){
-    let message = document.querySelector('.chat-input');
-    let chat = document.querySelector('.chat-field');
+    let message = doc.get('.chat-input');
+    let chat = doc.get('.chat-field');
     
+    // send message
     if (message.value != '') {
-        let chatBubble = document.createElement('div');
+        let chatBubble = doc.create('div');
         chatBubble.innerText = message.value;
         message.value= '';
         chatBubble.classList.add('chat-me');
         chat.appendChild(chatBubble);
     }
-    if ((chat.querySelector('.chat-me')!=null) &&(document.querySelector('.chat-date') == null)) {
-        let date = document.createElement('div');
+    // if first message - show time
+    if ((chat.querySelector('.chat-me')!=null) &&(doc.get('.chat-date') == null)) {
+        let date = doc.create('div');
         let options = { hour: 'numeric', minute: 'numeric'  };
         let today  = new Date();
         date.innerText = today.toLocaleTimeString("en-US", options).toUpperCase();
         date.classList.add('chat-date');
         chat.insertBefore(date, chat.firstChild);
     }
-    chat.lastElementChild.scrollIntoView();
+    // always show newest message
+    function showNewestMessage(){
+        chat.lastElementChild.scrollIntoView();
+    }
+
+    // automated reply on first message
     if (chat.childElementCount == 2) {
-        let typing = document.createElement('div');
-        let loadingFx1 = document.createElement('span');
-        let loadingFx2 = document.createElement('span');
-        let loadingFx3 = document.createElement('span');
+        let typing = doc.create('div');
+        let loadingFx1 = doc.create('span');
+        let loadingFx2 = doc.create('span');
+        let loadingFx3 = doc.create('span');
+        showNewestMessage();
         setTimeout(function(){
             typing.appendChild(loadingFx1);
             typing.appendChild(loadingFx2);
             typing.appendChild(loadingFx3);
             typing.classList.add('typing');
             chat.appendChild(typing);
+            showNewestMessage();
             setTimeout(function(){
                 typing.style.display="none";
-                let chatBubble2 = document.createElement('div');
+                let chatBubble2 = doc.create('div');
                 chatBubble2.innerText = "Hey there, please leave your details so we can contact you even if you are no longer on the site.";
                 chatBubble2.classList.add('chat-you');
                 chat.appendChild(chatBubble2);
 
-                let chatBubble3 = document.createElement('div');
-                chatBubble3.appendChild = firstResponse;
+                let chatBubble3 = doc.create('div');
+                chatBubble3.appendChild(firstResponse);
                 chatBubble3.classList.add('chat-you');
                 chat.appendChild(chatBubble3);
+                showNewestMessage();
             },4000);
         },500);
     }
+
+    // if this is not the first message, reply with random shit
     else {
-        let typing = document.createElement('div');
-        let loadingFx1 = document.createElement('span');
-        let loadingFx2 = document.createElement('span');
-        let loadingFx3 = document.createElement('span');
+        let typing = doc.create('div');
+        let loadingFx1 = doc.create('span');
+        let loadingFx2 = doc.create('span');
+        let loadingFx3 = doc.create('span');
+        showNewestMessage();
         setTimeout(function(){
             typing.appendChild(loadingFx1);
             typing.appendChild(loadingFx2);
             typing.appendChild(loadingFx3);
             typing.classList.add('typing');
             chat.appendChild(typing);
+            showNewestMessage();
             setTimeout(function(){
                 typing.style.display="none";
-                let chatBubble2 = document.createElement('div');
+                let chatBubble2 = doc.create('div');
                 chatBubble2.innerHTML = "That's very interesting, but I don't have time for that ;)";
                 chatBubble2.classList.add('chat-you');
                 chat.appendChild(chatBubble2);
+                showNewestMessage();
             },4000);
         },500);
     }
 }
 
 // create chat bubbles
-document.querySelector('.enter').addEventListener('click', sendMessage);
+doc.get('.enter').addEventListener('click', sendMessage);
 
 // chat clip/enter button transform on input
-document.querySelector('.chat-input').addEventListener('keypress', function(e){
-    if (document.querySelector('.chat-input').value != "") {
-        document.querySelector('.clip').classList.add('transparent');
-        document.querySelector('.enter').classList.remove('transparent');        
-    }
-    else {
-        document.querySelector('.clip').classList.remove('transparent');
-        document.querySelector('.enter').classList.add('transparent');
-    };
+doc.get('.chat-input').addEventListener('keypress', function(e){
+    setTimeout(function(){
+        if (e.target.value != "") {
+            doc.get('.clip').classList.add('transparent');
+            doc.get('.enter').classList.remove('transparent');  
+        }
+        else {
+            doc.get('.clip').classList.remove('transparent');
+            doc.get('.enter').classList.add('transparent');
+        };
+    },1)
+    
     // send message on enter
     if(e.code == "Enter") {
         sendMessage();
     }
 });
 
-document.querySelector('body').addEventListener('click', function() {
-    if (document.querySelector('.chat-input').value != "") {
-        document.querySelector('.clip').classList.add('transparent');
-        document.querySelector('.enter').classList.remove('transparent');        
-    }
-    else {
-        document.querySelector('.clip').classList.remove('transparent');
-        document.querySelector('.enter').classList.add('transparent');
-    }
-});
+// update enter/attatchement icons on mouseclick
+if (doc.get('.chat-wrap').classList.contains('chat-open')){
+    doc.get('body').addEventListener('click', function() {
+        if (doc.get('.chat-input').value != "") {
+            doc.get('.clip').classList.add('transparent');
+            doc.get('.enter').classList.remove('transparent');        
+        }
+        else {
+            doc.get('.clip').classList.remove('transparent');
+            doc.get('.enter').classList.add('transparent');
+        }
+    });
+}
+
+
+
+// Empty section parallax
+if(window.innerWidth > 767) {
+    window.addEventListener('scroll', function parallax(){
+        if (pageYOffset > 1100) {
+            let startingPoint = 1100;
+            let position = 0-1790 + (pageYOffset - startingPoint)*0.8;
+            doc.get('section.empty').style.backgroundPosition="center "+position+"px";
+        }
+    })
+}
+
+
+
+
 
 
 

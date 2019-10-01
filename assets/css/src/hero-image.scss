@@ -1,9 +1,14 @@
 section.hero-image {
     height: 465px;
     // background: olive;
+    @include breakpoint($tablet) {
+        height: 950px;
+        padding-top: 64px;
+        padding-bottom: 50px;
+    }
     .wrapper {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: column;
         padding-top: 25px;
         position: relative;
@@ -11,7 +16,8 @@ section.hero-image {
         height: 100%;
     }
     video {
-        height: 800px;
+        transition: none;
+        height: 100vh;
         
         top: 72px;
         bottom: 0;
@@ -26,7 +32,10 @@ section.hero-image {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: -250px;
+        margin-top: -120px;
+        @include breakpoint($tablet) {
+            margin-top: 20px;
+        }
     }
     .logo {
         width: 110px;
@@ -38,22 +47,33 @@ section.hero-image {
         justify-content: center;
         align-items: center;
         margin-bottom: 15px;
+        @include breakpoint($tablet) {
+            width: 140px;
+            height: 140px;
+        }
         span {
             height: 1px;
             position: absolute;
             width: 23px;
             border-top: 3px solid white;
+            @include breakpoint($tablet) {
+                width: 35px;
+            }
             &:nth-child(1) {
-                left: 5px;
+                left: 7px;
             }
             &:nth-child(2) {
-                right: 5px;
+                right: 7px;
             }
         }
         svg {
             height: 65px;
             width: 65px;
             fill: white;
+            @include breakpoint($tablet) {
+                height: 80px;
+                width: 80px;
+            }
         }
 
     }
@@ -65,17 +85,28 @@ section.hero-image {
         font-size: 51px;
         font-weight: 400;
         margin-bottom: 5px;
+        @include breakpoint($tablet) {
+            font-size: 64px;
+            letter-spacing: -2px;
+        }
     }
     h3 {
         font-size: 17px;
         letter-spacing: 2px;
         font-weight: 300;
+        @include breakpoint($tablet) {
+            font-size: 24px;
+        }
     }
     .social-icons {
         display: none;
         @include breakpoint($tablet) {
             display: flex;
-            
+            justify-content: center;
+        }
+        &> div {
+            width: 40px;
+            height: 40px;
         }
     }
     
