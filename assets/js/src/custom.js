@@ -1,5 +1,7 @@
 
-
+function hide(e) {
+    e.classList.add('hidden');
+}
 function unhide(e) {
     e.classList.remove('hidden');
 }
@@ -8,6 +10,12 @@ function opaque(e){
 }
 function opaqueNot(e) {
     e.classList.add('transparent');
+}
+function display(e) {
+    e.classList.remove('undisplayed');
+}
+function undisplay(e) {
+    e.classList.add('undisplayed');
 }
 
 let doc = {
@@ -120,7 +128,12 @@ doc.get('.display-switch.mobile').addEventListener('click', function(){
         mobile.classList.add('selected-display-type');
         body.classList.add('mobile-mode');
         showButtonToTop();
+        doc.get('section.empty').style.backgroundPosition='top';
         // enter mobile mode
+        let sections = doc.getAll('section');
+        for (i=1;i<sections.length;i++) {
+            unhide(sections[i]);
+        }
     }
 });
     doc.get('.display-switch.pc').addEventListener('click', function(){
@@ -330,16 +343,68 @@ if (doc.get('.chat-wrap').classList.contains('chat-open')){
     });
 }
 
-
+// IMPLEMENT show only one instance of chat "typing"
+// doc.get().addEventListener('')
+// IMPLEMENT JS menu scroll
 
 // Empty section parallax
-if(window.innerWidth > 767) {
+if(window.innerWidth > 767 || doc.id('displayPc').classList.contains('selected-display-type')) {
     window.addEventListener('scroll', function parallax(){
-        if (pageYOffset > 1100) {
-            let startingPoint = 1100;
-            let position = 0-1790 + (pageYOffset - startingPoint)*0.8;
+        if ((window.innerWidth > 767 || doc.id('displayPc').classList.contains('selected-display-type')) && pageYOffset > 1100) {
+            doc.get('section.empty').offsetTop
+            let startingPoint =doc.get('section.empty').offsetTop - 2383;
+            let position = 0 - 1790 + (pageYOffset - startingPoint)*0.8;
             doc.get('section.empty').style.backgroundPosition="center "+position+"px";
         }
+    })
+}
+
+doc.id('bookOnline').addEventListener('click', function showBookSection(){
+    let sections = doc.getAll('section');
+
+    for(i=0; i<sections.length;i++) {
+        hide(sections[i]);
+        setTimeout(function(){
+            for(j=0; j<sections.length;j++) {
+            undisplay(sections[j])
+        }
+        },1000);
+    }
+    setTimeout(function(){
+        display(doc.get('.book-online'));
+        
+    },1000);
+    setTimeout(function(){
+        unhide(doc.get('.book-online'));
+    },1200);
+});
+
+let menuItems = doc.getAll('.menu-wrap li');
+for(i=0;i<5;i++) {
+    menuItems[i].addEventListener('click',function exitBookShow(){
+        let sections = doc.getAll('section');
+
+    for(k=0; k<sections.length;k++) {
+        hide(sections[k]);
+        setTimeout(function(){
+            for(j=0; j<sections.length;j++) {
+            undisplay(sections[j])
+        }
+        },1000);
+    }
+    setTimeout(function(){
+        
+        for(j=0; j<sections.length;j++) {
+            display(sections[j])
+        }
+        undisplay(doc.get('.book-online'))
+        
+    },1000);
+    setTimeout(function(){
+        for(j=0; j<sections.length;j++) {
+            unhide(sections[j])
+        }
+    },1200);
     })
 }
 

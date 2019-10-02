@@ -98,6 +98,9 @@ nav {
             padding: 0;
         }
     }
+    li:hover {
+        opacity: 0.5;
+    }
     li:last-child{
         @include breakpoint($tablet) {
             display: none;

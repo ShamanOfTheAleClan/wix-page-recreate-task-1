@@ -13,31 +13,7 @@
 <body class='pc-mode'>
    
         
-    <div class="background-parallax-pic"></div>
-
-    <div class="back-to-top"></div>
-    <div class="chat-icon">
-        <svg data-bbox="17 8 17 17.989" fill="white" width="50" height="30" viewBox="0 0 50 30" xmlns="http://www.w3.org/2000/svg">
-            <g><path d="M19 8c-1.105 0-2 .892-2 2.005v9.577a2 2 0 0 0 1.99 2.004h2.238l-.18 3.847c-.027.555.3.724.736.371L27 21.586h4.994A2.001 2.001 0 0 0 34 19.582v-9.577C34 8.897 33.11 8 32 8H19z" fill-rule="evenodd"></path></g>
-        </svg>
-    </div>
-    <div class="chat-wrap">
-        <div class="chat-hero">
-            <h3>CHAT WITH US</h3>
-            <p>Hi there. I'm available to answer your questions.</p>
-            <div class="chat-close">
-                <svg viewBox="-2.4 21.6 9.7 9.7" fill="currentColor" width="12px" height="12px" class="collapseAsCross"><path d="M7.3 22.4l-.7-.8-4.1 4.2-4.1-4.2-.8.8 4.2 4.1-4.2 4.1.8.7 4.1-4.1 4.1 4.1.7-.7-4.1-4.1z" fill="currentColor" class="st0"></path></svg>
-            </div>
-        </div>
-        <div class="chat">
-            <div class="chat-field">
-
-            </div>
-            <input type="text" placeholder="Type your message..." class="chat-input">
-            <svg class="clip" viewBox="0 0 9 23" fill="currentColor" width="9px" height="23px"><g id="Layer_2"><path d="M4.5,23A4.5,4.5,0,0,1,0,18.5V4.5a4.5,4.5,0,0,1,9,0H8a3.5,3.5,0,0,0-7,0v14a3.5,3.5,0,0,0,7,0v-9a1.5,1.5,0,0,0-3,0V17H4V9.5a2.5,2.5,0,0,1,5,0v9A4.5,4.5,0,0,1,4.5,23Z" id="Layer_1-2"></path></g></svg>
-            <svg class="enter transparent" viewBox="0 0 16 16" fill="currentColor" width="16px" height="16px"><path fill="currentColor" d="M1.40926391,5.29366938 L15.6697462,0.453934265 C16.3429879,0.239515621 16.9856276,0.882771554 16.7714144,1.55665872 L11.9363152,15.8308142 C11.722102,16.5047013 10.8040452,16.6272263 10.4062206,16.0146016 L7.34603122,11.3280226 L12.057229,5.36657191 C12.2102384,5.1827845 12.0266271,4.9989971 11.8430157,5.15215327 L5.87714034,9.91898584 L1.19505066,6.85586236 C0.613614686,6.42702507 0.705420366,5.53871926 1.40926391,5.29366938 Z" transform="rotate(-45 12.3 10.382)"></path></svg>
-        </div>
-    </div>
+    
 
 
     <header class="wix-nav">
@@ -45,9 +21,9 @@
             <div class="wrappie">
                 <div class="wix-logo"></div>
                 <div class="view-type-set">
-                    <div class=" display-switch pc selected-display-type"></div>
+                    <div id="displayPc" class=" display-switch pc selected-display-type"></div>
                     <div class="line"></div>
-                    <div class="display-switch mobile"></div>
+                    <div id="displayMobile" class="display-switch mobile"></div>
 
                 </div>
             </div>
@@ -63,7 +39,34 @@
             </div> 
         </div>
     </header>
+    <div class="back-to-top"></div>
+    <div class="chat-icon">
+            <svg data-bbox="17 8 17 17.989" fill="white" width="50" height="30" viewBox="0 0 50 30" xmlns="http://www.w3.org/2000/svg">
+                <g><path d="M19 8c-1.105 0-2 .892-2 2.005v9.577a2 2 0 0 0 1.99 2.004h2.238l-.18 3.847c-.027.555.3.724.736.371L27 21.586h4.994A2.001 2.001 0 0 0 34 19.582v-9.577C34 8.897 33.11 8 32 8H19z" fill-rule="evenodd"></path></g>
+            </svg>
+        </div>
     <main>
+            <div class="background-parallax-pic"></div>
+
+            
+            
+            <div class="chat-wrap">
+                <div class="chat-hero">
+                    <h3>CHAT WITH US</h3>
+                    <p>Hi there. I'm available to answer your questions.</p>
+                    <div class="chat-close">
+                        <svg viewBox="-2.4 21.6 9.7 9.7" fill="currentColor" width="12px" height="12px" class="collapseAsCross"><path d="M7.3 22.4l-.7-.8-4.1 4.2-4.1-4.2-.8.8 4.2 4.1-4.2 4.1.8.7 4.1-4.1 4.1 4.1.7-.7-4.1-4.1z" fill="currentColor" class="st0"></path></svg>
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="chat-field">
+        
+                    </div>
+                    <input type="text" placeholder="Type your message..." class="chat-input">
+                    <svg class="clip" viewBox="0 0 9 23" fill="currentColor" width="9px" height="23px"><g id="Layer_2"><path d="M4.5,23A4.5,4.5,0,0,1,0,18.5V4.5a4.5,4.5,0,0,1,9,0H8a3.5,3.5,0,0,0-7,0v14a3.5,3.5,0,0,0,7,0v-9a1.5,1.5,0,0,0-3,0V17H4V9.5a2.5,2.5,0,0,1,5,0v9A4.5,4.5,0,0,1,4.5,23Z" id="Layer_1-2"></path></g></svg>
+                    <svg class="enter transparent" viewBox="0 0 16 16" fill="currentColor" width="16px" height="16px"><path fill="currentColor" d="M1.40926391,5.29366938 L15.6697462,0.453934265 C16.3429879,0.239515621 16.9856276,0.882771554 16.7714144,1.55665872 L11.9363152,15.8308142 C11.722102,16.5047013 10.8040452,16.6272263 10.4062206,16.0146016 L7.34603122,11.3280226 L12.057229,5.36657191 C12.2102384,5.1827845 12.0266271,4.9989971 11.8430157,5.15215327 L5.87714034,9.91898584 L1.19505066,6.85586236 C0.613614686,6.42702507 0.705420366,5.53871926 1.40926391,5.29366938 Z" transform="rotate(-45 12.3 10.382)"></path></svg>
+                </div>
+            </div>
     <nav>
         <div class="social-icons">
             <div class="fb"></div>
@@ -79,7 +82,7 @@
                     <li><a href="#ourWork">OUR WORK</a></li>
                     <li><a href="#aboutUs">ABOUT US</a></li>
                     <li><a href="#contact">CONTACT</a></li>
-                    <li><a href="#">BOOK ONLINE</a></li>
+                    <li><a id="bookOnline" href="#">BOOK ONLINE</a></li>
                     <li><a href="#"><div class="login-logo"></div>Log in</a></li>
                     <li>
                         <div class="social-icons">
@@ -99,7 +102,22 @@
         
     </nav>
 
-    
+    <section class="book-online undisplayed">
+        <div class="wrapper">
+            <h2>BOOK ONLINE</h2>
+            <div class="hor-line"></div>
+
+            <div class="book-item">
+                <div class="book-image"></div>
+                <div class="book-text">
+                    <h3>Style My Ride - Consultation</h3>
+                    <p>2 hr</p>
+                    <p>$100</p>
+                    <div class="button">BOOK NOW</div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="home" class='hero-image'>
         <div class="wrapper">
             <video preload="auto" loop playsinline muted autoplay class="background-parallax-pic"  data-quality="480p" src="https://video.wixstatic.com/video/11062b_40a304aeb9034bc187226c259aaa4ca3/1080p/mp4/file.mp4"></video>
@@ -316,18 +334,19 @@
             </div>
         </div>
     </section>
+        <footer>
+            <div class="social-icons">
+                <div class="fb"></div>
+                <div class="pinterest"></div>
+                <div class="insta"></div>
+            </div>
+            <p>© 2023 by Jade&Andy.</p>
+            <p>Proudly created with black magic</p>
+        </footer>
+    
+        <div class="cookie-bar"></div>
     </main>
-    <footer>
-        <div class="social-icons">
-            <div class="fb"></div>
-            <div class="pinterest"></div>
-            <div class="insta"></div>
-        </div>
-        <p>© 2023 by Jade&Andy.</p>
-        <p>Proudly created with black magic</p>
-    </footer>
-
-    <div class="cookie-bar"></div>
+    
 
     <script src="assets/js/prod.js"></script>
 </body>

@@ -1,6 +1,9 @@
 section.about-us {
-    background: center/cover no-repeat url('https://static.wixstatic.com/media/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.jpg/v1/fill/w_517,h_1080,al_c,q_85/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.webp');
+    background: center/cover no-repeat url('https://static.wixstatic.com/media/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.jpg/v1/fill/w_1230,h_1080,al_c,q_85/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.webp');
     padding: 40px 20px;
+    @include breakpoint($tablet) {
+        padding: 100px 20px;
+    }
     
     h2 {
         margin-bottom: 20px;
