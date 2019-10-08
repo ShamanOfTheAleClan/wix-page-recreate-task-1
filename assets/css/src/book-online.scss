@@ -34,7 +34,7 @@ section.book-online {
     .book-image {
         width: 240px;
         height: 240px;
-        background: center/cover no-repeat url("https://static.wixstatic.com/media/39769ad5f20342dbbb03e2d1679a5c85.jpg/v1/fill/w_469,h_283,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01/39769ad5f20342dbbb03e2d1679a5c85.webp");
+        background: center/cover no-repeat url("../images/image (3).png");
         @include breakpoint($tablet) {
             width: 300px;
             height: 100%;
@@ -57,6 +57,7 @@ section.book-online {
             font-size: 21px;
             font-weight: 300;
             line-height: 1.4;
+            width: 100%;
             @include breakpoint($tablet) {
                 margin-bottom: 20px;
             }

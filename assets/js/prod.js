@@ -41,10 +41,14 @@ burger.addEventListener('click', function(e) {
     if (burger.classList.contains('burger-active')){
         burger.classList.remove('burger-active');
         menu.classList.add('menu-hidden');
+        doc.get('main').style.removeProperty('overflow');
+        doc.get('body').style.removeProperty('overflow');
     }
     else {
         burger.classList.add('burger-active');
         menu.classList.remove('menu-hidden');
+        doc.get('body').style.overflow='hidden';
+        doc.get('main').style.overflow='hidden';
     }
 });
 window.addEventListener('scroll', function(){
@@ -97,13 +101,14 @@ for(i=0; i<hearts.length;i++) {
 };
 
 doc.get('.back-to-top').addEventListener('click', function(e){
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
+    doc.get('nav').scrollIntoView();
 });
 
 
 function showButtonToTop(){
     let button = doc.get('.back-to-top');
-    if (doc.get('.mobile').classList.contains('selected-display-type') && pageYOffset >= 200) {
+    if (doc.id('displayMobile').classList.contains('selected-display-type')) {
         opaque(button);
         console.log('opaque');
     }
@@ -129,11 +134,14 @@ doc.get('.display-switch.mobile').addEventListener('click', function(){
         body.classList.add('mobile-mode');
         showButtonToTop();
         doc.get('section.empty').style.backgroundPosition='top';
+        doc.get('.phone-top').style.display='block';
+        doc.get('.phone-bottom').style.display='block';
         // enter mobile mode
         let sections = doc.getAll('section');
         for (i=1;i<sections.length;i++) {
             unhide(sections[i]);
         }
+        
     }
 });
     doc.get('.display-switch.pc').addEventListener('click', function(){
@@ -142,6 +150,8 @@ doc.get('.display-switch.mobile').addEventListener('click', function(){
         body.classList.remove('mobile-mode');
         pc.classList.add('selected-display-type');
         body.classList.add('pc-mode');
+        doc.get('.phone-top').style.display='none';
+        doc.get('phone-botttom').style.display='none';
         showButtonToTop();
         // enter pc mode
     }
@@ -153,10 +163,22 @@ doc.get('.display-switch.mobile').addEventListener('click', function(){
 // chat open
 let chatCloseButton = doc.get('.chat-close');
 chatCloseButton.addEventListener('click', function(e){
-    doc.get('body').classList.remove('chat-open');
+    doc.get('body').style.removeProperty('overflow');
+    doc.get('body').style.removeProperty('height');
+    doc.get('main').style.removeProperty('overflow');
+    setTimeout(function(){
+        doc.get('body').classList.remove('chat-open');
+    },400)
+    
+    
 })
 doc.get('.chat-icon').addEventListener('click', function(e){
     doc.get('body').classList.add('chat-open');
+    doc.get('.chat-wrap').scrollIntoView();
+    doc.get('body').style.overflow='hidden';
+    doc.get('body').style.height='100%';
+    doc.get('body').style.width='100%';
+    doc.get('main').style.overflow='hidden';
 })
 
 // chat activate on chat input focus
@@ -236,6 +258,7 @@ function sendMessage(){
         message.value= '';
         chatBubble.classList.add('chat-me');
         chat.appendChild(chatBubble);
+        doc.get('.chat-field').scroll(0,50000);
     }
     // if first message - show time
     if ((chat.querySelector('.chat-me')!=null) &&(doc.get('.chat-date') == null)) {
@@ -248,11 +271,16 @@ function sendMessage(){
     }
     // always show newest message
     function showNewestMessage(){
-        chat.lastElementChild.scrollIntoView();
+        
+        // chat.lastElementChild.scrollIntoView();
+        // doc.get('main').scrollTo(0,0);
+        doc.get('.chat-field').scroll(0,50000);
+        
+
     }
 
     // automated reply on first message
-    if (chat.childElementCount == 2) {
+    if (chat.childElementCount == 2 && doc.get('.typing')==null) {
         let typing = doc.create('div');
         let loadingFx1 = doc.create('span');
         let loadingFx2 = doc.create('span');
@@ -276,13 +304,14 @@ function sendMessage(){
                 chatBubble3.appendChild(firstResponse);
                 chatBubble3.classList.add('chat-you');
                 chat.appendChild(chatBubble3);
+                chat.removeChild(typing);
                 showNewestMessage();
             },4000);
         },500);
     }
 
     // if this is not the first message, reply with random shit
-    else {
+    else if (doc.get('.typing')==null){
         let typing = doc.create('div');
         let loadingFx1 = doc.create('span');
         let loadingFx2 = doc.create('span');
@@ -301,6 +330,7 @@ function sendMessage(){
                 chatBubble2.innerHTML = "That's very interesting, but I don't have time for that ;)";
                 chatBubble2.classList.add('chat-you');
                 chat.appendChild(chatBubble2);
+                chat.removeChild(typing);
                 showNewestMessage();
             },4000);
         },500);
@@ -408,7 +438,16 @@ for(i=0;i<5;i++) {
     })
 }
 
-
+for(i=0;i<menuItems.length;i++) {
+    menuItems[i].addEventListener('click', function closeMenuOnClick(e){
+        if (burger.classList.contains('burger-active')){
+            burger.classList.remove('burger-active');
+            menu.classList.add('menu-hidden');
+            doc.get('main').style.removeProperty('overflow');
+            doc.get('body').style.removeProperty('overflow');
+        }
+    })
+}
 
 
 

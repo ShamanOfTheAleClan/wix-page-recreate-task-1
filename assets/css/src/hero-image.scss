@@ -8,12 +8,15 @@ section.hero-image {
     }
     .wrapper {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         flex-direction: column;
         padding-top: 25px;
         position: relative;
         overflow: hidden;
         height: 100%;
+        @include breakpoint($tablet) {
+            justify-content: space-between;
+        }
     }
     video {
         filter: brightness(0.8);

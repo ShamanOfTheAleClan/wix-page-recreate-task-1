@@ -1,5 +1,5 @@
 section.about-us {
-    background: center/cover no-repeat url('https://static.wixstatic.com/media/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.jpg/v1/fill/w_1230,h_1080,al_c,q_85/1e47b2_0d6c77b5ffd04c0e92f186a8193c3e3c.webp');
+    background: center/cover no-repeat url('../images/image.png');
     padding: 40px 20px;
     @include breakpoint($tablet) {
         padding: 100px 20px;
@@ -15,6 +15,7 @@ section.about-us {
     p {
         line-height: 1.3;
         font-size: 16px;
+        width: 100%;
     }
     .wrapper-small {
         @include breakpoint($tablet) {
