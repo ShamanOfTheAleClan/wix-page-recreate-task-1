@@ -84,17 +84,17 @@ for(i=0; i<hearts.length;i++) {
 
     
     hearts[i].addEventListener('click', function(f){
-        hearts[i].querySelector('.count');
-        hearts[i].querySelector('.count').dataset.count;
-        hearts[i].querySelector('.count').dataset.count++;
-        hearts[i].querySelector('.count').innerHTML = hearts[i].querySelector('.count').dataset.count;
-        if (hearts[i].querySelector('.count').dataset.count == 20) {
+        f.target.querySelector('.count');
+        f.target.querySelector('.count').dataset.count;
+        f.target.querySelector('.count').dataset.count++;
+        f.target.querySelector('.count').innerHTML = f.target.querySelector('.count').dataset.count;
+        if (f.target.querySelector('.count').dataset.count == 20) {
             alert('Please stop');
         }
-        if (hearts[i].querySelector('.count').dataset.count == 40) {
+        if (f.target.querySelector('.count').dataset.count == 40) {
             alert('No, really, stop');
         }
-        if (hearts[i].querySelector('.count').dataset.count == 100) {
+        if (f.target.querySelector('.count').dataset.count == 100) {
             alert('You REALLY don\'t have anything better to do??');
         }
     })
@@ -110,11 +110,11 @@ function showButtonToTop(){
     let button = doc.get('.back-to-top');
     if (doc.id('displayMobile').classList.contains('selected-display-type')) {
         opaque(button);
-        console.log('opaque');
+        // console.log('opaque');
     }
     else {
         opaqueNot(button);
-        console.log('transparent');
+        // console.log('transparent');
     }
 }
 
@@ -151,7 +151,7 @@ doc.get('.display-switch.mobile').addEventListener('click', function(){
         pc.classList.add('selected-display-type');
         body.classList.add('pc-mode');
         doc.get('.phone-top').style.display='none';
-        doc.get('phone-botttom').style.display='none';
+        doc.get('.phone-bottom').style.display='none';
         showButtonToTop();
         // enter pc mode
     }
@@ -339,19 +339,27 @@ function sendMessage(){
 
 // create chat bubbles
 doc.get('.enter').addEventListener('click', sendMessage);
+doc.get('.clip').addEventListener('click', function(){
+    alert(':)');
+})
 
 // chat clip/enter button transform on input
-doc.get('.chat-input').addEventListener('keypress', function(e){
+doc.get('.chat-input').addEventListener('keydown', function(e){
     setTimeout(function(){
         if (e.target.value != "") {
-            doc.get('.clip').classList.add('transparent');
-            doc.get('.enter').classList.remove('transparent');  
+            doc.get('.clip').style.opacity="0";
+            doc.get('.clip').style.pointerEvents='none';
+            doc.get('.enter').style.removeProperty('opacity');
+            doc.get('.enter').style.removeProperty('pointerEvents');
         }
         else {
-            doc.get('.clip').classList.remove('transparent');
-            doc.get('.enter').classList.add('transparent');
+            doc.get('.clip').style.removeProperty('opacity');
+            doc.get('.clip').style.removeProperty('pointerEvents');
+            doc.get('.enter').style.opacity="0";
+            doc.get('.enter').style.pointerEvents='none';
         };
-    },1)
+        console.log(e.target.value);
+    },10)
     
     // send message on enter
     if(e.code == "Enter") {
@@ -384,6 +392,9 @@ if(window.innerWidth > 767 || doc.id('displayPc').classList.contains('selected-d
             doc.get('section.empty').offsetTop
             let startingPoint =doc.get('section.empty').offsetTop - 2383;
             let position = 0 - 1790 + (pageYOffset - startingPoint)*0.8;
+            if (position > 0) {
+                position = 0
+            }
             doc.get('section.empty').style.backgroundPosition="center "+position+"px";
         }
     })
